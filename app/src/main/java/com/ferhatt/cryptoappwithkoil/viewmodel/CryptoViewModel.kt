@@ -46,7 +46,6 @@ class CryptoViewModel(
 
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
           val resource = cryptoDownloadRepo.downloadCryptos()
-
             withContext(Dispatchers.Main){
                 resource.data?.let {
                     cryptoList.value = resource
