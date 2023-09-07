@@ -20,15 +20,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class CryptoFragment : Fragment(), RecyclerViewAdapter.Listener {
 
-   // private var binding : FragmentCryptoBinding ?= null
    private var _binding: FragmentCryptoBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: CryptoViewModel
+    private val viewModel by viewModel<CryptoViewModel>()
     private var cryptoAdapter = RecyclerViewAdapter(arrayListOf(),this)
 
 
@@ -48,7 +48,7 @@ class CryptoFragment : Fragment(), RecyclerViewAdapter.Listener {
 
         val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.layoutManager = layoutManager
-        viewModel = ViewModelProvider(this).get(CryptoViewModel::class.java)
+       // viewModel = ViewModelProvider(this).get(CryptoViewModel::class.java)
         viewModel.getDataFromAPI()
         observeLiveData()
     }
